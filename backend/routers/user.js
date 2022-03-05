@@ -83,7 +83,7 @@ router.get('/getuser', auth, async (req, res) => {
     try {
         let userid = req.user.id;
         const user = await User.findById(userid).select("-password")
-        res.status(200).json({user})
+        res.status(200).json(user)
         //console.log(userid)
     } catch (error) {
         res.status(500).json({ error: "something has occured" })

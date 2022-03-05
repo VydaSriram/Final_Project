@@ -1,13 +1,20 @@
 import VehicleContext from "./vehicleContext";
 import {  useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const VehicleState = (props)=>{
   
   const host = 'http://localhost:5000'
 const [vehicles, setvehicles] = useState([]);
 
+const [searchname, setsearchname] = useState("")
+
+const [searchvehicles, setsearchvehicles] = useState([]);
+
+let navigate = useNavigate();
 
 //function to get vehicles
+
 const getallvehicles  = async()=>{
   const response = await fetch(`${host}/vehicles/getallvehicles`, {
     method: 'GET',
@@ -17,6 +24,7 @@ const getallvehicles  = async()=>{
     },    
   });
   const allvehicles= await response.json();
+  // console.log(allvehicles)
   setvehicles(allvehicles);
   
 }
@@ -36,6 +44,9 @@ const deletevehicle =  async(id)=>{
  // console.log(json)
   const newvehicles = vehicles.filter((vehicle)=>{return vehicle._id!==id})
   setvehicles(newvehicles);
+
+  const newsearchvehicles = searchvehicles.filter((vehicle)=>{return vehicle._id!==id})
+  setsearchvehicles(newsearchvehicles);
  }
  
 //funtion to edit vehicle
@@ -63,6 +74,22 @@ for(let i=0; i< vehicles.length;i++)
 }
 setvehicles(newvehicles);
 //console.log(vehicles)
+
+let snewvehicles=JSON.parse(JSON.stringify(searchvehicles))   
+for(let i=0; i< searchvehicles.length;i++)
+{
+  const vehicle=snewvehicles[i];
+  if(vehicle._id === id)
+  {
+    snewvehicles[i].name = name;
+    snewvehicles[i].Type = Type;
+    snewvehicles[i].cost = cost;
+   break;
+  }
+}
+setsearchvehicles(snewvehicles);
+
+
 }
 
 //function to add vehicle
@@ -82,8 +109,28 @@ const addvehicle = async (name,Type,cost)=>{
   setvehicles(vehicles.concat(vehicle));
 }
 
+
+
+  const search = async (name) => {
+    const response = await fetch(`${host}/vehicles/searchvehicle`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ name }),
+    });
+    if (response.status !== 200) {
+      alert("no Vehicle found");
+      navigate('/')
+    }
+    const json = await response.json();
+    //  console.log(json.vehicle);
+    setsearchvehicles(json.vehicle);
+  };
+
   return (
-      <VehicleContext.Provider value={{vehicles,getallvehicles,deletevehicle,editvehicle,addvehicle}}>
+      <VehicleContext.Provider value={{vehicles,getallvehicles,deletevehicle,editvehicle,addvehicle,searchname,setsearchname,search,searchvehicles}}>
         {props.children}
       </VehicleContext.Provider>
   )

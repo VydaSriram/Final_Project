@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link,useLocation,useNavigate } from 'react-router-dom';
-import VehicleState from '../context/vehicles/vehicleState';
+import vehicleContext from '../context/vehicles/vehicleContext';
+
 
 
 export default function Navbar() {
@@ -20,6 +21,21 @@ export default function Navbar() {
    e.preventDefault();
    navigate('/signup');
  }
+
+const [searchbox, setsearchbox] = useState("");
+const context = useContext(vehicleContext);
+
+const {setsearchname,searchname} = context;
+
+ const handleSearch = (e)=>{
+    e.preventDefault();
+    setsearchname(searchbox);
+    navigate('/search');
+ }
+
+const handleSearchBox = (e)=>{
+  setsearchbox(e.target.value)
+}
 
 const handlelogout = ()=>{
   localStorage.setItem('token',null);
@@ -55,10 +71,14 @@ const handlelogout = ()=>{
           <Link className="dropdown-item" to="#">View orders </Link>
         </div>
       </li> }
+      
+     {token!=='null' && <li className="nav-item">
+          <Link className={`nav-link ${(location.pathname==="/viewuser"?"active":"")}`} to="/viewuser">View Profile</Link>
+        </li>   }
       </ul>
       <form className="d-flex mx-4">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <input className="form-control me-2" type="search" value={searchbox} onChange={handleSearchBox} placeholder="Search" aria-label="Search" />
+        <button className="btn btn-outline-success" onClick={handleSearch} type="submit">Search</button>
       </form>
 
      {token==='null' ? <form><button className="btn btn-outline-info my-2 mx-2" onClick={login}>Login</button>

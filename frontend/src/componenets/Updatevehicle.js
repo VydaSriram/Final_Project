@@ -5,7 +5,7 @@ function Updatevehicle(props) {
     let context  = useContext(vehicleContext);
     const { editvehicle } = context;
     const { vehicle, fref,setvehicle } = props;
-   // console.log(vehicle)
+    // console.log(vehicle)   
    const closeref  = useRef(null); 
 
     const handlechange = (e)=>{
@@ -14,7 +14,7 @@ function Updatevehicle(props) {
     }
 
    const handlesubmit = ()=>{
-        console.log(vehicle)
+        // console.log(vehicle)
         editvehicle(vehicle.id,vehicle.uname,vehicle.utype,vehicle.ucost);
         closeref.current.click();
     }

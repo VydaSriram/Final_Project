@@ -6,12 +6,12 @@ const User  = require('../models/User');
 const { body, validationResult } = require('express-validator');
 
 //Router1 to get allvehicles user/admin login required
-router.get('/getallvehicles',auth,async(req,res)=>{
+router.get('/getallvehicles',async(req,res)=>{
     try{
     const vehicles = await Vehicles.find({"issold" : false})
 
     if(vehicles.length<=0)
-      return res.status(403).json({error : "no vehicles found"})
+      return res.status(404).json({error : "no vehicles found"})
     res.status(200).json(vehicles);
     }
     catch(error){
@@ -98,12 +98,12 @@ router.delete('/deletevehicles/:id',auth,async(req,res)=>{
 })
 
 //Router4 search a vehicle admin/user login required
-router.get('/searchvehicle',auth,async(req,res)=>{
+router.post('/searchvehicle',async(req,res)=>{
     try{
-     const vehicle = await Vehicles.find({"name":req.body.name});
+     const vehicle = await Vehicles.find({"name":req.body.name,"issold":false});
 
      if(vehicle.length<=0)
-        return res.status(402).json({error:"not available"});
+        return res.status(404).json({error:"not available"});
      
      res.status(200).json({vehicle});
     }

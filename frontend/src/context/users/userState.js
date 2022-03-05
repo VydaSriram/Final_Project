@@ -6,7 +6,8 @@ const UserState = (props)=>{
 
   const host = 'localhost:5000'
  const [users, setusers] = useState([]);
- let navigate = useNavigate();
+//  const [user,setuser] = useState();
+ let navigate = useNavigate(); 
  
  
 
@@ -79,8 +80,28 @@ const UserState = (props)=>{
 
  }
 
+const [user, setuser] = useState({name:"",email:""})
+
+ const getuserdetails = async()=>{
+  
+  const response = await fetch(`http://${host}/user/getuser`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token' : localStorage.getItem('token')
+        },   
+      });
+      const json = await response.json();
+      setuser({name:json.name,email:json.email})
+      // setuser(json)
+      // console.log(user)
+
+ }
+
+
+
   return (
-      <UserContext.Provider value={{users,loginuser,signupuser,allusers}}>
+      <UserContext.Provider value={{users,loginuser,signupuser,allusers,getuserdetails,user}}>
         {props.children}
       </UserContext.Provider>
   )

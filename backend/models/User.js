@@ -23,7 +23,20 @@ const UserSchema = new Schema({
     role :{
         type : Number,
         default :0
+    },
+    cart : [
+        {
+        Name : {
+            type : String
+        },
+        Category : {
+            type : String
+        },
+        Cost : {
+            type : Number
+        }
     }
+    ]
     
   });
 

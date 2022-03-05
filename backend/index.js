@@ -12,6 +12,7 @@ app.use(express.json())
 //Routes
 app.use('/user',require('./routers/user'))
 app.use('/vehicles',require('./routers/vehicle'))
+app.use('/cart',require('./routers/cart'))
 
 app.listen(port, () => {
   console.log(`vehiclestore app listening on port ${port}`)

@@ -14,6 +14,9 @@ import Signup from './componenets/Signup';
 import Adminhome from './componenets/Adminhome';
 import AddVehicle from './componenets/modals/AddVehicle';
 import ViewUsers from './componenets/ViewUsers';
+import Viewuser from './componenets/Viewuser';
+import Search from './componenets/Search';
+
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
          <Route exact path="/signup" element={ <Signup /> } ></Route>
          <Route exact path="/addvehicle" element={ <AddVehicle /> } ></Route>
          <Route exact path="/viewusers" element={ <ViewUsers /> } ></Route>
+         <Route exact path="/viewuser" element={ <Viewuser/> }></Route>
+         <Route exact path="/search" element={ <Search/> }></Route>
        </Routes>
        </VehicleState>
        </UserState>
