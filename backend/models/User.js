@@ -34,6 +34,9 @@ const UserSchema = new Schema({
         },
         Cost : {
             type : Number
+        },
+        image : {
+            type : String
         }
     }
     ]

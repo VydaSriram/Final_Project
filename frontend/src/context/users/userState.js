@@ -80,7 +80,7 @@ const UserState = (props)=>{
 
  }
 
-const [user, setuser] = useState({name:"",email:""})
+const [user, setuser] = useState({name:"",email:"",cart:""})
 
  const getuserdetails = async()=>{
   
@@ -92,16 +92,43 @@ const [user, setuser] = useState({name:"",email:""})
         },   
       });
       const json = await response.json();
-      setuser({name:json.name,email:json.email})
+      setuser({name:json.name,email:json.email,cart:json.cart})
       // setuser(json)
       // console.log(user)
 
  }
 
+ const addToCart = async(vehicledetails)=>{
+  
+  const response = await fetch(`http://${host}/cart/addtocart`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token' : localStorage.getItem('token')
+        }, 
+        body: JSON.stringify({Name : vehicledetails.name,Category : vehicledetails.Type,Cost : vehicledetails.cost,image : vehicledetails.image})  
+      });
+      const json = await response.json();
+      console.log(json);
 
+ }
+
+ const removeFromCart = async(id)=>{
+  
+  const response = await fetch(`http://${host}/cart/removefromcart/:${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token' : localStorage.getItem('token')
+        },   
+      });
+      const json = await response.json();
+      // console.log(json);
+
+ }
 
   return (
-      <UserContext.Provider value={{users,loginuser,signupuser,allusers,getuserdetails,user}}>
+      <UserContext.Provider value={{users,loginuser,signupuser,allusers,getuserdetails,user,addToCart,removeFromCart}}>
         {props.children}
       </UserContext.Provider>
   )

@@ -110,8 +110,8 @@ const addvehicle = async (name,Type,cost)=>{
 }
 
 
-
-  const search = async (name) => {
+//searchvehicle byname
+const search = async (name) => {
     const response = await fetch(`${host}/vehicles/searchvehicle`, {
       method: "POST",
       headers: {
@@ -128,6 +128,26 @@ const addvehicle = async (name,Type,cost)=>{
     //  console.log(json.vehicle);
     setsearchvehicles(json.vehicle);
   };
+
+// const [vehicleByid, setvehicleByid] = useState()
+//   const searchVehicleById = async (id) => {
+//     const response = await fetch(`${host}/vehicles/searchvehicle/:${id}`, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "auth-token": localStorage.getItem("token"),
+//       },
+//     });
+//     if (response.status !== 200) {
+//       alert("no Vehicle found");
+//       navigate('/')
+//     }
+//     const json = await response.json();
+//     //  console.log(json.vehicle);
+//     setvehicleByid(json.vehicle);
+//   };
+
+
 
   return (
       <VehicleContext.Provider value={{vehicles,getallvehicles,deletevehicle,editvehicle,addvehicle,searchname,setsearchname,search,searchvehicles}}>

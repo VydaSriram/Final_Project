@@ -13,6 +13,7 @@ app.use(express.json())
 app.use('/user',require('./routers/user'))
 app.use('/vehicles',require('./routers/vehicle'))
 app.use('/cart',require('./routers/cart'))
+app.use('/order',require('./routers/order'))
 
 app.listen(port, () => {
   console.log(`vehiclestore app listening on port ${port}`)

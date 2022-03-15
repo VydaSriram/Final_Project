@@ -26,6 +26,9 @@ const VehicleSchema = new Schema({
     issold :{
         type : Boolean,
         default : false
+    },
+    image :{
+        type : String
     }
   });
 
