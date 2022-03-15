@@ -13,9 +13,9 @@ export default function Vehicle(props) {
     const {vehicles} = props
   return <div className='container'>
        <div className="my-3  row">
-       {vehicles.map((vehicle)=>{
+       {vehicles.error !== "no vehicles found" ?  vehicles.map((vehicle)=>{
         return  <VehicleCard  key={vehicle._id} vehupdate={vehupdate} vehicle={vehicle}/>
-    }) }
+    }) : <div> no vehicles available  </div>}
      </div>
 
 <Updatevehicle setvehicle={setvehicle} vehicle={vehicle} fref={ref}/>
