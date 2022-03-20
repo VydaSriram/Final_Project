@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState,useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 import UserContext from '../context/users/userContext';
 
 export default function Login() {
-  
+    let navigate=useNavigate()
     let context = useContext(UserContext)
     const { loginuser } = context;
     const [logindetails, setlogindetails] = useState({email : "",password : ""});
     const handlechange = (e)=>{
      setlogindetails({...logindetails,[e.target.name]:e.target.value})
     }
+    useEffect(() => {
+        if(localStorage.getItem('token')!=='null')
+          navigate('/')
+      }, []);
   
     const handlesubmit = (e)=>{
         e.preventDefault();

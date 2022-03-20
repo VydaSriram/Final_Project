@@ -40,6 +40,7 @@ const handleSearchBox = (e)=>{
 const handlelogout = ()=>{
   localStorage.setItem('token',null);
   localStorage.setItem('admin',0);
+  localStorage.setItem('username',"")
   //console.log('logged out')
   navigate('/')
 }
@@ -47,7 +48,7 @@ const handlelogout = ()=>{
   return <div >
     <nav className="navbar navbar-expand-lg  navbar-dark bg-dark">
   <div className="container-fluid">
-    <Link className="navbar-brand" to="/">VehicleStore</Link>
+    <Link className="navbar-brand" to="/">VehiclePro</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -73,7 +74,7 @@ const handlelogout = ()=>{
       </li> }
       
      {token!=='null' && <li className="nav-item">
-          <Link className={`nav-link ${(location.pathname==="/viewuser"?"active":"")}`} to="/viewuser">View Profile</Link>
+          <Link className={`nav-link ${(location.pathname==="/viewuser"?"active":"")}`} to="/viewuser">Dashboard</Link>
         </li>   }
       </ul>
       <form className="d-flex mx-4">
