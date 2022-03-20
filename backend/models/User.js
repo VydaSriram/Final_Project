@@ -26,18 +26,21 @@ const UserSchema = new Schema({
     },
     cart : [
         {
-        Name : {
+        name : {
             type : String
         },
-        Category : {
+        Type : {
             type : String
         },
-        Cost : {
+        cost : {
             type : Number
         },
         image : {
             type : String
-        }
+        },
+        vid : {
+            type : mongoose.Schema.Types.ObjectId
+        },
     }
     ]
     
