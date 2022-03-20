@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState,useEffect } from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import vehicleContext from '../../context/vehicles/vehicleContext';
 
@@ -8,29 +8,32 @@ export default function AddVehicle() {
     let addref = useRef(null);
     let closeref = useRef(null);
     useEffect(() => {
-     addref.current.click();
+        addref.current.click();
     }, []);
-    
+
     let navigate = useNavigate();
-   
-    const [vehicle, setvehicle] = useState({uname:"" , utype : "",ucost : ""});
-    const handlechange = (e)=>{
-        setvehicle({...vehicle,[e.target.name]:e.target.value})
+
+    const [vehicle, setvehicle] = useState({ uname: "", utype: "", ucost: "" ,image:null});
+    const handlechange = (e) => {
+        setvehicle({ ...vehicle, [e.target.name]: e.target.value })
         //console.log(vehicle)
-         }
-     
-        const handlesubmit = ()=>{
-             //console.log(vehicle)
-             addvehicle(vehicle.uname,vehicle.utype,vehicle.ucost);
-             closeref.current.click();
-             navigate('/adminhome');
-         }
+    }
+    const handlefiles = (e) => {
+       setvehicle({...vehicle, [e.target.name] : e.target.files[0]});
+    }
 
-         const hclose = ()=>{
-            navigate('/adminhome');
-         }
+    const handlesubmit = () => {
+        //console.log(vehicle)
+        addvehicle(vehicle.uname, vehicle.utype, vehicle.ucost,vehicle.image);
+        closeref.current.click();
+        navigate('/adminhome');
+    }
 
-  return <div className='my-3'>
+    const hclose = () => {
+        navigate('/adminhome');
+    }
+
+    return <div className='my-3'>
         <button ref={addref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             Launch demo modal
         </button>
@@ -49,16 +52,20 @@ export default function AddVehicle() {
 
                             <div className="form-group my-2">
                                 <label name="uname">Name</label>
-                                <input type="text" id='uname' name="uname" value={vehicle.uname} className="form-control" onChange={handlechange}  required />
+                                <input type="text" id='uname' name="uname" value={vehicle.uname} className="form-control" onChange={handlechange} required />
                             </div>
 
                             <div className="form-group my-2">
                                 <label name='utype' >Type</label>
-                                <input type="text" id='utype' name='utype' value={vehicle.utype} onChange={handlechange} className="form-control"  minLength={3} required />
+                                <input type="text" id='utype' name='utype' value={vehicle.utype} onChange={handlechange} className="form-control" minLength={3} required />
                             </div>
                             <div className="form-group my-2">
                                 <label name='ucost' >Cost</label>
-                                <input type="number" id='ucost' name='ucost' value={vehicle.ucost} onChange={handlechange} className="form-control"  minLength={2} required />
+                                <input type="number" id='ucost' name='ucost' value={vehicle.ucost} onChange={handlechange} className="form-control" minLength={2} required />
+                            </div>
+                            <div className="form-group my-2">
+                                <label name='vehimage' >Image</label>
+                                <input type="file" id='image' onChange={handlefiles} name='image' className="form-control" required />
                             </div>
                         </form>
                     </div>
@@ -69,5 +76,5 @@ export default function AddVehicle() {
                 </div>
             </div>
         </div>
-  </div>;
+    </div>;
 }

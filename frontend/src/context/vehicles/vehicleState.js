@@ -93,18 +93,23 @@ setsearchvehicles(snewvehicles);
 }
 
 //function to add vehicle
-const addvehicle = async (name,Type,cost)=>{
+const addvehicle = async (name,Type,cost,image)=>{
   //apicall
+  const formdata = new FormData();
+  formdata.append('name',name)
+  formdata.append('Type',Type)
+  formdata.append('cost',cost)
+  formdata.append('profile',image);
   const response = await fetch(`${host}/vehicles/addvehicle`, {
     method: 'POST',  
     headers: {
-      'Content-Type': 'application/json',
+      'accept' : '*/*',
       'auth-token' : localStorage.getItem('token')
     },   
-    body: JSON.stringify({name,Type,cost}) 
+    body: formdata 
   });
   const added_vehicle =await response.json(); 
-  //console.log(json);
+  // console.log(added_vehicle);
  const vehicle = added_vehicle;
   setvehicles(vehicles.concat(vehicle));
 }
