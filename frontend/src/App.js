@@ -18,6 +18,7 @@ import Viewuser from './componenets/Viewuser';
 import Search from './componenets/Search';
 import Cart from './componenets/Cart';
 import Orders from './componenets/Orders';
+import AllOrders from './componenets/AllOrders';
 
 
 
@@ -42,6 +43,7 @@ function App() {
          <Route exact path="/viewuser/Cart" element={ <Cart/> } ></Route>
          <Route exact path="/viewuser/Orders" element={ <Orders/>} ></Route>
          <Route exact path="/search" element={ <Search/> }></Route>
+         <Route exact path="/allorders" element = { <AllOrders></AllOrders> }></Route>
        </Routes>
        </VehicleState>
        </UserState>

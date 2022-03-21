@@ -5,9 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Viewuser() {
   let context = useContext(userContext);
   const { getuserdetails, user } = context;
-  //console.log("hello")
-  console.log(user);
-  //console.log(getuserdetails);
+  
   useEffect(() => {
     getuserdetails();
   }, []);
@@ -50,29 +48,29 @@ export default function Viewuser() {
             <td>EMAIL</td>
             <td>{user.email}</td>
           </tr>
-          <tr style={{ border: "solid", borderColor: "black" }}>
-            <td>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                style={{ borderRadius: "5%" }}
-                onClick={cart}
-                
-              >
-                CHECK YOUR CART
-              </button>
-            </td>
-            <td>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                style={{ borderRadius: "5%" }}
-                onClick={Orders}
-              >
-                CHECK YOUR ORDERS
-              </button>
-            </td>
-          </tr>
+        { (localStorage.getItem('admin')==='0')  && <tr style={{ border: "solid", borderColor: "black" }}>
+          <td>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              style={{ borderRadius: "5%" }}
+              onClick={cart}
+              
+            >
+              CHECK YOUR CART
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              style={{ borderRadius: "5%" }}
+              onClick={Orders}
+            >
+              CHECK YOUR ORDERS
+            </button>
+          </td>
+        </tr>}
         </tbody>
       </table>
     </div>

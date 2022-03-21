@@ -10,7 +10,7 @@ export default function Vehicles(props) {
   let context = useContext(vehicleContext);
   const { deletevehicle } = context;
   let usercontext = useContext(userContext);
-  const { addToCart, removeFromCart } = usercontext;
+  const { addToCart, removeFromCart, ordervehicle } = usercontext;
 
   const handledelete = () => {
     deletevehicle(vehicle._id);
@@ -28,6 +28,10 @@ export default function Vehicles(props) {
     //console.log('upd');
     vehupdate(vehicle);
   };
+
+  const handleOrder = () => {
+    ordervehicle(vehicle._id);
+  }
 
   return (
     <div className="col-md-4 my-3">
@@ -67,13 +71,12 @@ export default function Vehicles(props) {
                 )}
             </div>
             <div className="col">
-              {" "}
               {localStorage.getItem("admin") !== "1" &&
                 localStorage.getItem("token") !== "null" &&
                 location.pathname === "/viewuser/Cart" && (
-                  <a href="#" className="btn btn-primary">
-                    proceed to order
-                  </a>
+                  <button href="#" className="btn btn-primary" onClick={handleOrder}>
+                    proceed to pay {vehicle.cost} $
+                  </button>
                 )}
             </div>
           </div>

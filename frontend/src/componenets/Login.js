@@ -21,7 +21,7 @@ export default function Login() {
     const handlesubmit = (e)=>{
         e.preventDefault();
       //console.log(logindetails)
-      loginuser(logindetails)
+      loginuser(logindetails);
     }
 
     return <>

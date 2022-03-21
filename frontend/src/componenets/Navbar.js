@@ -69,7 +69,7 @@ const handlelogout = ()=>{
           <Link  className="dropdown-item" to="/addvehicle">Add Vehicle</Link>
           <Link className="dropdown-item" to="/viewusers">View Users</Link>
           <div className="dropdown-divider"></div>
-          <Link className="dropdown-item" to="#">View orders </Link>
+          <Link className="dropdown-item" to="/allorders">View orders </Link>
         </div>
       </li> }
       

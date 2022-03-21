@@ -15,7 +15,7 @@ router.post("/addtocart/:vehid", auth, async (req, res) => {
     }
     user.cart.push(req.body);
     await user.save();
-    res.status(200).json({message:"vehicle added to cart",vehicle:req.body});
+    res.status(200).json({ message: "vehicle added to cart", vehicle: req.body });
   } catch (error) {
     console.log(error);
     res.json({ error: "something occured" });

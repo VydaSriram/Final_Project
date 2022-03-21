@@ -109,36 +109,8 @@ const VehicleState = (props) => {
     setvehicles(vehicles.concat(vehicle));
   };
 
-<<<<<<< HEAD
-//function to add vehicle
-const addvehicle = async (name,Type,cost,image)=>{
-  //apicall
-  const formdata = new FormData();
-  formdata.append('name',name)
-  formdata.append('Type',Type)
-  formdata.append('cost',cost)
-  formdata.append('profile',image);
-  const response = await fetch(`${host}/vehicles/addvehicle`, {
-    method: 'POST',  
-    headers: {
-      'accept' : '*/*',
-      'auth-token' : localStorage.getItem('token')
-    },   
-    body: formdata 
-  });
-  const added_vehicle =await response.json(); 
-  // console.log(added_vehicle);
- const vehicle = added_vehicle;
-  setvehicles(vehicles.concat(vehicle));
-}
-
-
-//searchvehicle byname
-const search = async (name) => {
-=======
   //searchvehicle byname
   const search = async (name) => {
->>>>>>> 8478ae30b8164130265373301d59cab51ea756b9
     const response = await fetch(`${host}/vehicles/searchvehicle`, {
       method: "POST",
       headers: {
