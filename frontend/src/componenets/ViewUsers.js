@@ -16,10 +16,10 @@ function ViewUsers() {
 
   return <div className='container'>
         <table className="table container my-5">
-            <caption>List of users</caption>
+            
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">S.no</th>
                     <th scope="col"> Name </th>
                     <th scope="col"> Email </th>
                     <th scope="col"> Joined Date </th>

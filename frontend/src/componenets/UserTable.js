@@ -4,7 +4,7 @@ function UserTable(props) {
     const {user,row} = props
      
       return  <tr>
-                    <th scope="row">{row}</th>
+                    <td scope="row">{row}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>{new Date(user.date).toLocaleString()}</td>

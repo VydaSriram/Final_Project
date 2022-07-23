@@ -48,7 +48,7 @@ router.get('/viewallorders', auth, async (req, res) => {
         let orders = await Order.find({});
         let allorders = []
         for (var i = 0; i < orders.length; i++) {
-            let order = { username: "", useremail: "", vehicleName: "", vehicleCategory: "", vehicleCost: "", img: "" }
+            let order = { username: "", useremail: "", vehicleName: "", vehicleCategory: "", vehicleCost: "", img: "" ,date:""}
             let user = await User.findById(orders[i].userid);
             order.username = user.name;
             order.useremail = user.email;
@@ -56,6 +56,8 @@ router.get('/viewallorders', auth, async (req, res) => {
             order.vehicleCategory = orders[i].category;
             order.vehicleCost = orders[i].cost;
             order.img = orders[i].image;
+            order.date=orders[i].date;
+            order._id=orders[i]._id;
             allorders.push(order);
         }
 
